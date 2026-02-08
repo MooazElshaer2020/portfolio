@@ -23,7 +23,7 @@ class ProjectsSeeder extends Seeder
                 'تصميم متجاوب',
                 'دفع إلكتروني'
             ]),
-            'live_url' => '#',
+            'live_url' => 'https://konuzalnahl.com/',
             'github_url' => '#',
             'order' => 1
         ]);

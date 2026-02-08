@@ -103,9 +103,10 @@
                     <h2 class="fw-bold mb-4 section-title">عني</h2>
                     <p class="lead mb-4">مطور لارافيل محترف ومدير قسم تكنولوجيا المعلومات بخبرة في تطوير تطبيقات الويب وأنظمة الإدارة.</p>
                     <p class="mb-4">متخصص في بناء تطبيقات ويب قوية وآمنة باستخدام إطار عمل لارافيل. عملت على مشاريع متنوعة تتراوح بين المواقع الإلكترونية وأنظمة الإدارة المعقدة.</p>
-                    <div class="mt-4">
+                   <div class="mt-4">
                         <h5 class="mb-3 fw-bold">الخبرات العملية:</h5>
                         <ul class="list-unstyled">
+                            <li class="mb-2"><i class="fas fa-briefcase text-primary me-2"></i> <strong>مطور لارافيل - فريق المطورين بليبيا</strong> - شركة نظم (<a href="https://nozum.cloud/" target="_blank" class="text-decoration-none">nozum.cloud</a>)</li>
                             <li class="mb-2"><i class="fas fa-briefcase text-primary me-2"></i> رئيس قسم تكنولوجيا المعلومات - شركة الهدى للمقاولات</li>
                             <li class="mb-2"><i class="fas fa-briefcase text-primary me-2"></i> مطور لارافيل - شركة برمجة إيجبت فيجن</li>
                         </ul>
