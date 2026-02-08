@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Animate.css for animations -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
     <!-- Custom CSS -->
     <style>
@@ -82,6 +82,7 @@
             border: none;
             border-radius: 15px;
             overflow: hidden;
+            height: 100%;
         }
         .project-card:hover {
             transform: translateY(-10px) scale(1.03);
@@ -113,6 +114,27 @@
         footer a:hover {
             color: #667eea;
             transition: color 0.3s;
+        }
+
+        /* Project Image Styles */
+        .project-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .project-image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .project-image-placeholder.website {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .project-image-placeholder.system {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
         }
     </style>
 </head>
@@ -197,65 +219,64 @@
             <h2 class="text-center fw-bold mb-5 section-title">المشاريع</h2>
 
             <!-- Websites -->
-            <!-- Websites -->
-<h3 class="mb-4 fw-bold">المواقع الإلكترونية</h3>
-<div class="row g-4 mb-5">
-    @foreach($websites as $project)
-    <div class="col-md-4">
-        <div class="card project-card h-100">
-            <div style="height: 200px; overflow: hidden;">
-                @if($project->image)
-                    <img src="{{ asset('images/projects/' . $project->image) }}" class="w-100 h-100 object-fit-cover" alt="{{ $project->title }}" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\"background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\" class=\"w-100 h-100 d-flex align-items-center justify-content-center\"><i class=\"fas fa-globe fa-4x text-white\"></i></div>'">
-                @else
-                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);" class="w-100 h-100 d-flex align-items-center justify-content-center">
-                        <i class="fas fa-globe fa-4x text-white"></i>
+            <h3 class="mb-4 fw-bold">المواقع الإلكترونية</h3>
+            <div class="row g-4 mb-5">
+                @foreach($websites as $project)
+                <div class="col-md-4">
+                    <div class="card project-card h-100">
+                        <div style="height: 200px; overflow: hidden;">
+                            @if($project->image && file_exists(public_path('images/projects/' . $project->image)))
+                                <img src="{{ asset('images/projects/' . $project->image) }}" class="project-image" alt="{{ $project->title }}">
+                            @else
+                                <div class="project-image-placeholder website">
+                                    <i class="fas fa-globe fa-4x text-white"></i>
+                                </div>
+                            @endif
+                        </div>
+                        <div class="card-body p-4">
+                            <h5 class="card-title fw-bold mb-3">{{ $project->title }}</h5>
+                            <p class="card-text text-muted mb-3">{{ Str::limit($project->description, 100) }}</p>
+                            <div class="mb-3">
+                                @foreach($project->technologies_array as $tech)
+                                <span class="tech-badge">{{ $tech }}</span>
+                                @endforeach
+                            </div>
+                            <a href="#" class="btn btn-primary fw-bold w-100">عرض التفاصيل</a>
+                        </div>
                     </div>
-                @endif
-            </div>
-            <div class="card-body p-4">
-                <h5 class="card-title fw-bold mb-3">{{ $project->title }}</h5>
-                <p class="card-text text-muted mb-3">{{ Str::limit($project->description, 100) }}</p>
-                <div class="mb-3">
-                    @foreach($project->technologies_array as $tech)
-                    <span class="tech-badge">{{ $tech }}</span>
-                    @endforeach
                 </div>
-                <a href="#" class="btn btn-primary fw-bold w-100">عرض التفاصيل</a>
+                @endforeach
             </div>
-        </div>
-    </div>
-    @endforeach
-</div>
 
-<!-- Systems -->
-<h3 class="mb-4 fw-bold">أنظمة الإدارة</h3>
-<div class="row g-4">
-    @foreach($systems as $project)
-    <div class="col-md-4">
-        <div class="card project-card h-100">
-            <div style="height: 200px; overflow: hidden;">
-                @if($project->image)
-                    <img src="{{ asset('images/projects/' . $project->image) }}" class="w-100 h-100 object-fit-cover" alt="{{ $project->title }}" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\"background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);\" class=\"w-100 h-100 d-flex align-items-center justify-content-center\"><i class=\"fas fa-cogs fa-4x text-white\"></i></div>'">
-                @else
-                    <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);" class="w-100 h-100 d-flex align-items-center justify-content-center">
-                        <i class="fas fa-cogs fa-4x text-white"></i>
+            <!-- Systems -->
+            <h3 class="mb-4 fw-bold">أنظمة الإدارة</h3>
+            <div class="row g-4">
+                @foreach($systems as $project)
+                <div class="col-md-4">
+                    <div class="card project-card h-100">
+                        <div style="height: 200px; overflow: hidden;">
+                            @if($project->image && file_exists(public_path('images/projects/' . $project->image)))
+                                <img src="{{ asset('images/projects/' . $project->image) }}" class="project-image" alt="{{ $project->title }}">
+                            @else
+                                <div class="project-image-placeholder system">
+                                    <i class="fas fa-cogs fa-4x text-white"></i>
+                                </div>
+                            @endif
+                        </div>
+                        <div class="card-body p-4">
+                            <h5 class="card-title fw-bold mb-3">{{ $project->title }}</h5>
+                            <p class="card-text text-muted mb-3">{{ Str::limit($project->description, 100) }}</p>
+                            <div class="mb-3">
+                                @foreach($project->technologies_array as $tech)
+                                <span class="tech-badge">{{ $tech }}</span>
+                                @endforeach
+                            </div>
+                            <a href="#" class="btn btn-primary fw-bold w-100">عرض التفاصيل</a>
+                        </div>
                     </div>
-                @endif
-            </div>
-            <div class="card-body p-4">
-                <h5 class="card-title fw-bold mb-3">{{ $project->title }}</h5>
-                <p class="card-text text-muted mb-3">{{ Str::limit($project->description, 100) }}</p>
-                <div class="mb-3">
-                    @foreach($project->technologies_array as $tech)
-                    <span class="tech-badge">{{ $tech }}</span>
-                    @endforeach
                 </div>
-                <a href="#" class="btn btn-primary fw-bold w-100">عرض التفاصيل</a>
+                @endforeach
             </div>
-        </div>
-    </div>
-    @endforeach
-</div>
         </div>
     </section>
 
