@@ -116,3 +116,8 @@ digital transformation for construction and industrial companies.
 A results-driven Laravel Developer with strong IT management experience,
 capable of handling both software development and full IT operations,
 especially in construction and enterprise environments.
+
+
+
+
+
