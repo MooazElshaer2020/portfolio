@@ -42,7 +42,7 @@ class ProjectsSeeder extends Seeder
                 'تحسين محركات البحث',
                 'دعم اللغة العربية والإنجليزية'
             ]),
-            'live_url' => 'https://www.elsaka-export.com',
+            'live_url' => 'https://elsaka.org/',
             'github_url' => '#',
             'order' => 2
         ]);

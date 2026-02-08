@@ -76,44 +76,62 @@
             <h1 class="text-center fw-bold mb-5 section-title">جميع المشاريع</h1>
 
             <div class="row">
-                @foreach($projects as $project)
-                <div class="col-md-6 mb-4">
-                    <div class="card project-item h-100">
-                        <div class="card-body p-4">
-                            <div class="d-flex justify-content-between align-items-start mb-3">
-                                <h5 class="card-title fw-bold">{{ $project->title }}</h5>
-                                <span class="badge bg-primary px-3 py-2">{{ $project->category == 'website' ? 'موقع إلكتروني' : 'نظام إدارة' }}</span>
-                            </div>
-                            <p class="card-text text-muted mb-4">{{ $project->description }}</p>
-                            
-                            <div class="mb-4">
-                                <strong class="d-block mb-2">التقنيات المستخدمة:</strong>
-                                @foreach($project->technologies_array as $tech)
-                                <span class="tech-tag">{{ $tech }}</span>
+    @foreach($projects as $project)
+    <div class="col-md-6 mb-4">
+        <div class="card project-item h-100">
+            <div class="row g-0">
+                <div class="col-md-4" style="height: 200px; overflow: hidden;">
+                    @if($project->image)
+                        <img src="{{ asset('images/projects/' . $project->image) }}" class="w-100 h-100 object-fit-cover" alt="{{ $project->title }}" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\"background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\" class=\"w-100 h-100 d-flex align-items-center justify-content-center\"><i class=\"fas fa-{{ $project->category == 'website' ? 'globe' : 'cogs' }} fa-3x text-white\"></i></div>'">
+                    @else
+                        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);" class="w-100 h-100 d-flex align-items-center justify-content-center">
+                            <i class="fas fa-{{ $project->category == 'website' ? 'globe' : 'cogs' }} fa-3x text-white"></i>
+                        </div>
+                    @endif
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <h5 class="card-title fw-bold">{{ $project->title }}</h5>
+                            <span class="badge bg-primary px-3 py-2">{{ $project->category == 'website' ? 'موقع إلكتروني' : 'نظام إدارة' }}</span>
+                        </div>
+                        <p class="card-text text-muted mb-4">{{ $project->description }}</p>
+                        
+                        <div class="mb-4">
+                            <strong class="d-block mb-2">التقنيات المستخدمة:</strong>
+                            @foreach($project->technologies_array as $tech)
+                            <span class="tech-tag">{{ $tech }}</span>
+                            @endforeach
+                        </div>
+
+                        <div class="mb-4">
+                            <strong class="d-block mb-2">المميزات:</strong>
+                            <ul class="list-unstyled ps-3">
+                                @foreach($project->features as $feature)
+                                <li class="mb-1"><i class="fas fa-check-circle text-success me-2"></i> {{ $feature }}</li>
                                 @endforeach
-                            </div>
+                            </ul>
+                        </div>
 
-                            <div class="mb-4">
-                                <strong class="d-block mb-2">المميزات:</strong>
-                                <ul class="list-unstyled ps-3">
-                                    @foreach($project->features as $feature)
-                                    <li class="mb-1"><i class="fas fa-check-circle text-success me-2"></i> {{ $feature }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-
-                            <div class="d-flex gap-2 flex-wrap">
-                                @if($project->live_url != '#')
-                                <a href="{{ $project->live_url }}" class="btn btn-success" target="_blank">
-                                    <i class="fas fa-external-link-alt me-1"></i> عرض مباشر
-                                </a>
-                                @endif
-                            </div>
+                        <div class="d-flex gap-2 flex-wrap">
+                            @if($project->live_url != '#')
+                            <a href="{{ $project->live_url }}" class="btn btn-success" target="_blank">
+                                <i class="fas fa-external-link-alt me-1"></i> عرض مباشر
+                            </a>
+                            @endif
+                            @if($project->github_url != '#')
+                            <a href="{{ $project->github_url }}" class="btn btn-dark" target="_blank">
+                                <i class="fab fa-github me-1"></i> كود المشروع
+                            </a>
+                            @endif
                         </div>
                     </div>
                 </div>
-                @endforeach
             </div>
+        </div>
+    </div>
+    @endforeach
+</div>
         </div>
     </section>
 
